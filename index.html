@@ -69,7 +69,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.18;margin:0;t
 p{margin:0 0 1em}
 a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 :focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:4px}
 
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
@@ -166,7 +166,12 @@ section:last-of-type{border-bottom:0}
 /* screenshots */
 .shots{display:flex;gap:16px;overflow-x:auto;padding:6px 24px 22px;scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch}
-.shots img{width:216px;flex:none;border-radius:16px;border:1px solid var(--line-2);
+/* aspect-ratio, not height:auto alone: the phone captures are 9:16 and must stay
+   9:16 whatever their pixel size, so a later re-export at a different resolution
+   cannot squash the strip again. object-fit keeps the picture undistorted even
+   if a file ever arrives with a different shape. */
+.shots img{width:216px;height:auto;aspect-ratio:9/16;object-fit:cover;flex:none;
+  border-radius:16px;border:1px solid var(--line-2);
   box-shadow:var(--shadow-l);scroll-snap-align:center;background:var(--surface)}
 .shots-wrap{max-width:100%;overflow:hidden}
 .shot-caps{display:flex;gap:16px;padding:0 24px;overflow-x:auto;scrollbar-width:none}
@@ -344,14 +349,14 @@ footer .fine{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
 
   <div class="shots-wrap">
     <div class="shots">
-      <img src="img/1-home.png" alt="The app's home screen, showing level, streak and the chapter to continue" loading="lazy" width="1080" height="1920">
-      <img src="img/2-bloch.png" alt="The Bloch Explorer lab with a draggable sphere and live probabilities" loading="lazy" width="1080" height="1920">
-      <img src="img/3-circuits.png" alt="The circuit builder with a gate palette and a two-qubit circuit" loading="lazy" width="1080" height="1920">
-      <img src="img/4-grover.png" alt="Grover's search lab showing signed amplitude bars" loading="lazy" width="1080" height="1920">
-      <img src="img/5-bb84.png" alt="The BB84 quantum key lab showing the sifted-key error rate" loading="lazy" width="1080" height="1920">
-      <img src="img/6-lesson.png" alt="A chapter lesson with equations and a figure" loading="lazy" width="1080" height="1920">
-      <img src="img/7-quiz.png" alt="A quiz question with an explanation of the right answer" loading="lazy" width="1080" height="1920">
-      <img src="img/8-progress.png" alt="The progress screen with coverage, streaks and badges" loading="lazy" width="1080" height="1920">
+      <img src="img/1-home.png" alt="The app's home screen, showing level, streak and the chapter to continue" loading="lazy" width="540" height="960">
+      <img src="img/2-bloch.png" alt="The Bloch Explorer lab with a draggable sphere and live probabilities" loading="lazy" width="540" height="960">
+      <img src="img/3-circuits.png" alt="The circuit builder with a gate palette and a two-qubit circuit" loading="lazy" width="540" height="960">
+      <img src="img/4-grover.png" alt="Grover's search lab showing signed amplitude bars" loading="lazy" width="540" height="960">
+      <img src="img/5-bb84.png" alt="The BB84 quantum key lab showing the sifted-key error rate" loading="lazy" width="540" height="960">
+      <img src="img/6-lesson.png" alt="A chapter lesson with equations and a figure" loading="lazy" width="540" height="960">
+      <img src="img/7-quiz.png" alt="A quiz question with an explanation of the right answer" loading="lazy" width="540" height="960">
+      <img src="img/8-progress.png" alt="The progress screen with coverage, streaks and badges" loading="lazy" width="540" height="960">
     </div>
     <div class="shot-caps" aria-hidden="true">
       <span>Home</span><span>Bloch Explorer</span><span>Circuit Builder</span><span>Grover Lab</span>
@@ -523,8 +528,8 @@ footer .fine{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
     <div class="section-head">
       <div class="eyebrow">Downloads</div>
       <h2>Free for anyone who wants to learn</h2>
-      <p>Both books are free to download and free to use in teaching. If you use them in a
-         course, I would be glad to hear about it.</p>
+      <p>The book is free to download and free to use in teaching. If you use it in a course,
+         I would be glad to hear about it.</p>
     </div>
 
     <div class="dl">
@@ -540,16 +545,17 @@ footer .fine{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
       <div class="ic" style="background:color-mix(in srgb,var(--green) 13%,transparent);color:var(--green)">
         <svg viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5-10-5ZM6 12v4.6c0 1.4 2.7 2.4 6 2.4s6-1 6-2.4V12"/></svg></div>
       <div class="tx">
-        <b>Teacher's Guide</b>
-        <span>Teaching notes, self-tests with answers, and complete step-by-step solutions to all 647 problems</span>
+        <b>Teacher's Guide — on request</b>
+        <span>Teaching notes, self-tests with answers, and complete step-by-step solutions to all 647
+          problems. Sent to teachers and lecturers by email, so the solutions stay on your side of the desk.</span>
       </div>
-      <a class="btn btn-solid" href="book/QCFE_TeachersGuide.pdf" download>Download PDF</a>
+      <a class="btn btn-solid" href="mailto:ismael.abdulrahman@epu.edu.iq?subject=Teacher%27s%20Guide%20request%20%E2%80%94%20Quantum%20Computing%20for%20Everyone&amp;body=Dear%20Dr.%20Abdulrahman%2C%0A%0AI%20would%20like%20a%20copy%20of%20the%20Teacher%27s%20Guide%20for%20Quantum%20Computing%20for%20Everyone.%0A%0AName%3A%0AInstitution%3A%0ACourse%20or%20subject%20I%20teach%3A%0A%0AThank%20you.">Request by email</a>
     </div>
 
     <div class="note" style="margin-top:8px">
       <b>Using this in a course?</b> The Student Edition is bundled inside the app, so students
-      who install it already have the book offline. The Teacher's Guide is deliberately kept
-      out of the app so solutions stay on your side of the desk.
+      who install it already have the book offline. The Teacher's Guide is not published here or
+      in the app — write to me from your institutional address and I will send it to you.
     </div>
   </div>
 </section>
@@ -576,14 +582,12 @@ footer .fine{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,
         <ul>
           <li><a href="privacy.html">Privacy policy</a></li>
           <li><a href="mailto:ismael.abdulrahman@epu.edu.iq">Contact the author</a></li>
-          <li><a href="https://ismaelabdulrahman.github.io/solar-energy-for-everyone/">Solar Energy for Everyone</a></li>
         </ul>
       </div>
     </div>
     <div class="fine">
-      © 2026 Ismael Khorshed Abdulrahman. The book and the app are free for anyone who wishes
-      to learn. The book was built with the help of artificial intelligence, under the
-      direction and review of the author.
+      © 2026 Ismael Khorshed Abdulrahman. The book and the app are free for anyone who
+      wishes to learn.
     </div>
   </div>
 </footer>
